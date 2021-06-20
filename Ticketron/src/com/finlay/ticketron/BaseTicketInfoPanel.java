@@ -37,20 +37,20 @@ public class BaseTicketInfoPanel extends RoundedJPanel implements ActionListener
 	private int radius = 15;
 	protected SpringLayout layout;
 	protected TicketCard ticketCard;
-	protected JLabel subjectLabel;
+	protected JLabel lblSubject;
 	protected JPanel subjectContainer;
-	protected JTextArea subjectText;
-	protected JLabel typeLabel;
+	protected JTextArea txtSubject;
+	protected JLabel lblType;
 	protected JPanel typeContainer;
-	protected JLabel ratingLabel;
+	protected JLabel lblRating;
 	protected JPanel ratingContainer;
-	protected JLabel dateCreatedLabel;
+	protected JLabel lblDateCreated;
 	protected JPanel dateCreatedContainer;
 	protected JButton btnClose;
 	protected JPanel bottomRightBtnContainer;
 	protected JPanel bottomLeftBtnContainer;
 	private JPanel notesContainer;
-	private JScrollPane scrollPane;
+	private JScrollPane scrNotes;
 	private Font strikethrough;
 	protected int textCenterLine;
 	protected int shadowOffset = 4;
@@ -87,66 +87,66 @@ public class BaseTicketInfoPanel extends RoundedJPanel implements ActionListener
 	}
 	
 	protected void initTicketLayout() {
-		subjectLabel = new JLabel("Subject:"); 
-		subjectLabel.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
-		subjectLabel.setSize(100, 20); 
-        add(subjectLabel); 
-		layout.putConstraint(SpringLayout.EAST, subjectLabel, textCenterLine, SpringLayout.WEST, this);
-		layout.putConstraint(SpringLayout.NORTH, subjectLabel, 30, SpringLayout.NORTH, this);
+		lblSubject = new JLabel("Subject:"); 
+		lblSubject.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
+		lblSubject.setSize(100, 20); 
+        add(lblSubject); 
+		layout.putConstraint(SpringLayout.EAST, lblSubject, textCenterLine, SpringLayout.WEST, this);
+		layout.putConstraint(SpringLayout.NORTH, lblSubject, 30, SpringLayout.NORTH, this);
         
-        subjectText = new JTextArea(1,20); 
-        subjectText.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
-        subjectText.setWrapStyleWord(true);
-        subjectText.setLineWrap(true);
-        subjectText.setOpaque(false);
-        subjectText.setEditable(false);
-        subjectText.setFocusable(false);
-        add(subjectText);
-        layout.putConstraint(SpringLayout.WEST, subjectText, 5, SpringLayout.EAST, subjectLabel);
-        layout.putConstraint(SpringLayout.NORTH, subjectText, 0, SpringLayout.NORTH, subjectLabel);
-        layout.putConstraint(SpringLayout.EAST, subjectText, -10, SpringLayout.EAST, this);
+        txtSubject = new JTextArea(1,20); 
+        txtSubject.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
+        txtSubject.setWrapStyleWord(true);
+        txtSubject.setLineWrap(true);
+        txtSubject.setOpaque(false);
+        txtSubject.setEditable(false);
+        txtSubject.setFocusable(false);
+        add(txtSubject);
+        layout.putConstraint(SpringLayout.WEST, txtSubject, 5, SpringLayout.EAST, lblSubject);
+        layout.putConstraint(SpringLayout.NORTH, txtSubject, 0, SpringLayout.NORTH, lblSubject);
+        layout.putConstraint(SpringLayout.EAST, txtSubject, -10, SpringLayout.EAST, this);
 		
-		typeLabel = new JLabel("Type:"); 
-        typeLabel.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
-        typeLabel.setSize(100, 20);
-        add(typeLabel);
-        layout.putConstraint(SpringLayout.EAST, typeLabel, textCenterLine, SpringLayout.WEST, this);
-		layout.putConstraint(SpringLayout.NORTH, typeLabel, 20, SpringLayout.SOUTH, subjectText);
+		lblType = new JLabel("Type:"); 
+        lblType.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
+        lblType.setSize(100, 20);
+        add(lblType);
+        layout.putConstraint(SpringLayout.EAST, lblType, textCenterLine, SpringLayout.WEST, this);
+		layout.putConstraint(SpringLayout.NORTH, lblType, 20, SpringLayout.SOUTH, txtSubject);
 		
 		typeContainer = new JPanel();
 		typeContainer.setSize(100, 20); 
 		typeContainer.setOpaque(false);
         add(typeContainer);  
-        layout.putConstraint(SpringLayout.WEST, typeContainer, 5, SpringLayout.EAST, typeLabel);
-        layout.putConstraint(SpringLayout.VERTICAL_CENTER, typeContainer, 0, SpringLayout.VERTICAL_CENTER, typeLabel);
+        layout.putConstraint(SpringLayout.WEST, typeContainer, 5, SpringLayout.EAST, lblType);
+        layout.putConstraint(SpringLayout.VERTICAL_CENTER, typeContainer, 0, SpringLayout.VERTICAL_CENTER, lblType);
         
-		ratingLabel = new JLabel("Rating:"); 
-        ratingLabel.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
-        ratingLabel.setSize(100, 20); 
-        add(ratingLabel); 
-        layout.putConstraint(SpringLayout.EAST, ratingLabel, textCenterLine, SpringLayout.WEST, this);
-		layout.putConstraint(SpringLayout.NORTH, ratingLabel, 20, SpringLayout.SOUTH, typeLabel);
+		lblRating = new JLabel("Rating:"); 
+        lblRating.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
+        lblRating.setSize(100, 20); 
+        add(lblRating); 
+        layout.putConstraint(SpringLayout.EAST, lblRating, textCenterLine, SpringLayout.WEST, this);
+		layout.putConstraint(SpringLayout.NORTH, lblRating, 20, SpringLayout.SOUTH, lblType);
 		
 		ratingContainer = new JPanel(); 
 		ratingContainer.setSize(100, 20); 
 		ratingContainer.setOpaque(false);
 	    add(ratingContainer); 
-	    layout.putConstraint(SpringLayout.WEST, ratingContainer, 5, SpringLayout.EAST, ratingLabel);
-        layout.putConstraint(SpringLayout.VERTICAL_CENTER, ratingContainer, 0, SpringLayout.VERTICAL_CENTER, ratingLabel);
+	    layout.putConstraint(SpringLayout.WEST, ratingContainer, 5, SpringLayout.EAST, lblRating);
+        layout.putConstraint(SpringLayout.VERTICAL_CENTER, ratingContainer, 0, SpringLayout.VERTICAL_CENTER, lblRating);
         
-        dateCreatedLabel = new JLabel("Created:"); 
-        dateCreatedLabel.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
-        dateCreatedLabel.setSize(100, 20); 
-        add(dateCreatedLabel); 
-        layout.putConstraint(SpringLayout.EAST, dateCreatedLabel, textCenterLine, SpringLayout.WEST, this);
-		layout.putConstraint(SpringLayout.NORTH, dateCreatedLabel, 20, SpringLayout.SOUTH, ratingLabel);
+        lblDateCreated = new JLabel("Created:"); 
+        lblDateCreated.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
+        lblDateCreated.setSize(100, 20); 
+        add(lblDateCreated); 
+        layout.putConstraint(SpringLayout.EAST, lblDateCreated, textCenterLine, SpringLayout.WEST, this);
+		layout.putConstraint(SpringLayout.NORTH, lblDateCreated, 20, SpringLayout.SOUTH, lblRating);
 		
 		dateCreatedContainer = new JPanel();
 		dateCreatedContainer.setSize(100, 20); 
 		dateCreatedContainer.setOpaque(false);
 	    add(dateCreatedContainer); 
-	    layout.putConstraint(SpringLayout.WEST, dateCreatedContainer, 5, SpringLayout.EAST, ratingLabel);
-        layout.putConstraint(SpringLayout.VERTICAL_CENTER, dateCreatedContainer, 0, SpringLayout.VERTICAL_CENTER, dateCreatedLabel);
+	    layout.putConstraint(SpringLayout.WEST, dateCreatedContainer, 5, SpringLayout.EAST, lblRating);
+        layout.putConstraint(SpringLayout.VERTICAL_CENTER, dateCreatedContainer, 0, SpringLayout.VERTICAL_CENTER, lblDateCreated);
 		
         bottomRightBtnContainer = new JPanel();
         bottomRightBtnContainer.setOpaque(false);
@@ -170,20 +170,21 @@ public class BaseTicketInfoPanel extends RoundedJPanel implements ActionListener
             @Override
             public boolean isVisible() {
                 return true;
+                
             }
         };
-		scrollPane = new JScrollPane(notesContainer, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBorder(null);
-		scrollPane.setVerticalScrollBar(scrollBar);
-		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+		scrNotes = new JScrollPane(notesContainer, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrNotes.setBorder(null);
+		scrNotes.setVerticalScrollBar(scrollBar);
+		scrNotes.getVerticalScrollBar().setUnitIncrement(10);
 		//scrollPane.getViewport().setOpaque(false);
-		scrollPane.setOpaque(false);
+		scrNotes.setOpaque(false);
 		notesContainer.setLayout(new BoxLayout(notesContainer, BoxLayout.Y_AXIS));
-	    add(scrollPane);
-	    layout.putConstraint(SpringLayout.NORTH, scrollPane, 10, SpringLayout.SOUTH, dateCreatedLabel);
-        layout.putConstraint(SpringLayout.SOUTH, scrollPane, -10, SpringLayout.NORTH, bottomRightBtnContainer);
-        layout.putConstraint(SpringLayout.EAST, scrollPane, -20 - getShadowGap(), SpringLayout.EAST, this);
-        layout.putConstraint(SpringLayout.WEST, scrollPane, 20, SpringLayout.WEST, this);
+	    add(scrNotes);
+	    layout.putConstraint(SpringLayout.NORTH, scrNotes, 10, SpringLayout.SOUTH, lblDateCreated);
+        layout.putConstraint(SpringLayout.SOUTH, scrNotes, -10, SpringLayout.NORTH, bottomRightBtnContainer);
+        layout.putConstraint(SpringLayout.EAST, scrNotes, -20 - getShadowGap(), SpringLayout.EAST, this);
+        layout.putConstraint(SpringLayout.WEST, scrNotes, 20, SpringLayout.WEST, this);
         
         //prep strickthrough font 
         Map fontAttr = new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20).getAttributes();
@@ -192,7 +193,7 @@ public class BaseTicketInfoPanel extends RoundedJPanel implements ActionListener
 	}
 	
 	protected void loadTicket(TicketCard ticketCard) {
-		subjectText.setVisible(true);
+		txtSubject.setVisible(true);
 		this.ticketCard = ticketCard;
 		Ticket t = ticketCard.getTicket();
 		Font regFont = new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20);

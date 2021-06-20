@@ -26,9 +26,9 @@ import javax.swing.SpringLayout;
 public class TicketViewPanel extends BaseTicketInfoPanel {
 	
 	private Frame frame;
-	private JLabel typeText;
-	private JLabel ratingText;
-	private JLabel dateCreatedText;
+	private JLabel lblType;
+	private JLabel lblRating;
+	private JLabel lblDateCreated;
 	private JButton btnDelete;
 	private JButton btnEdit;
 	private JButton btnArchive;
@@ -41,20 +41,20 @@ public class TicketViewPanel extends BaseTicketInfoPanel {
         
 		
 		
-        typeText = new JLabel();
-        typeText.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
-        typeText.setSize(getMaximumSize()); 
-        typeContainer.add(typeText);  
+        lblType = new JLabel();
+        lblType.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
+        lblType.setSize(getMaximumSize()); 
+        typeContainer.add(lblType);  
   
-        ratingText = new JLabel();
-        ratingText.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
-        ratingText.setSize(getMaximumSize()); 
-        ratingContainer.add(ratingText);
+        lblRating = new JLabel();
+        lblRating.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
+        lblRating.setSize(getMaximumSize()); 
+        ratingContainer.add(lblRating);
         
-        dateCreatedText = new JLabel();
-        dateCreatedText.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
-        dateCreatedText.setSize(getMaximumSize()); 
-        dateCreatedContainer.add(dateCreatedText);
+        lblDateCreated = new JLabel();
+        lblDateCreated.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 20)); 
+        lblDateCreated.setSize(getMaximumSize()); 
+        dateCreatedContainer.add(lblDateCreated);
         
         btnEdit = new RoundedJButton("Edit", false);
         btnEdit.setBackground(Color.BLUE);
@@ -171,11 +171,11 @@ public class TicketViewPanel extends BaseTicketInfoPanel {
 		super.loadTicket(ticketCard);
 		
 		
-		subjectText.setText(t.getSubject());
-		subjectText.setRows((int) Math.ceil(t.getSubject().length()/27));
-		typeText.setText(t.getType().toString());
-		ratingText.setText(t.getRating().toString());
-		dateCreatedText.setText(t.getDateCreated().toString());
+		txtSubject.setText(t.getSubject());
+		txtSubject.setRows((int) Math.ceil(t.getSubject().length()/27));
+		lblType.setText(t.getType().toString());
+		lblRating.setText(t.getRating().toString());
+		lblDateCreated.setText(t.getDateCreated().toString());
 
 		if(t.getStatus() == TicketStatus.CLOSED) {
 			if(t.getIsArchived()) {

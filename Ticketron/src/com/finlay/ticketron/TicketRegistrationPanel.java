@@ -30,10 +30,10 @@ import javax.swing.SpringLayout;
 public class TicketRegistrationPanel extends BaseTicketInfoPanel implements ActionListener{
 	
 	private Frame frame;
-	private JTextField subjectTextField;
-	private JComboBox<TicketType> typeComboBox;
-	private JComboBox<TicketRating> ratingComboBox;
-	private JLabel dateCreatedText;
+	private JTextField txtSubject;
+	private JComboBox<TicketType> cmbType;
+	private JComboBox<TicketRating> cmbRating;
+	private JLabel lblDateCreated;
 	private JButton btnCreate;
 	
 	public TicketRegistrationPanel() {
@@ -41,31 +41,31 @@ public class TicketRegistrationPanel extends BaseTicketInfoPanel implements Acti
 		Rectangle r = frame.getBounds();
 		setLocation(r.width/2 - width/2, r.height/2 - height/2);	
   
-        subjectTextField = new JTextField(); 
-        layout.putConstraint(SpringLayout.WEST, subjectTextField, 5, SpringLayout.EAST, subjectLabel);
-        layout.putConstraint(SpringLayout.NORTH, subjectTextField, 0, SpringLayout.NORTH, subjectLabel);
-        layout.putConstraint(SpringLayout.EAST, subjectTextField, -40, SpringLayout.EAST, this);
-        subjectTextField.setFont(new Font("Arial", Font.PLAIN, 15)); 
-        add(subjectTextField);
+        txtSubject = new JTextField(); 
+        layout.putConstraint(SpringLayout.WEST, txtSubject, 5, SpringLayout.EAST, lblSubject);
+        layout.putConstraint(SpringLayout.NORTH, txtSubject, 0, SpringLayout.NORTH, lblSubject);
+        layout.putConstraint(SpringLayout.EAST, txtSubject, -40, SpringLayout.EAST, this);
+        txtSubject.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        add(txtSubject);
         
-        layout.putConstraint(SpringLayout.NORTH, typeLabel, 20, SpringLayout.SOUTH, subjectTextField);
+        layout.putConstraint(SpringLayout.NORTH, lblType, 20, SpringLayout.SOUTH, txtSubject);
   
-        typeComboBox = new JComboBox<>();
-        typeComboBox.setModel(new DefaultComboBoxModel<>(TicketType.values()));
-        typeComboBox.setFont(new Font("Arial", Font.PLAIN, 15)); 
-        typeComboBox.setMaximumSize(typeComboBox.getPreferredSize());
-        typeContainer.add(typeComboBox); 
+        cmbType = new JComboBox<>();
+        cmbType.setModel(new DefaultComboBoxModel<>(TicketType.values()));
+        cmbType.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        cmbType.setMaximumSize(cmbType.getPreferredSize());
+        typeContainer.add(cmbType); 
   
-        ratingComboBox = new JComboBox<>();
-        ratingComboBox.setModel(new DefaultComboBoxModel<>(TicketRating.values()));
-        ratingComboBox.setFont(new Font("Arial", Font.PLAIN, 15)); 
-        ratingComboBox.setMaximumSize(ratingComboBox.getPreferredSize()); 
-        ratingContainer.add(ratingComboBox); 
+        cmbRating = new JComboBox<>();
+        cmbRating.setModel(new DefaultComboBoxModel<>(TicketRating.values()));
+        cmbRating.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        cmbRating.setMaximumSize(cmbRating.getPreferredSize()); 
+        ratingContainer.add(cmbRating); 
         
-        dateCreatedText = new JLabel();
-        dateCreatedText.setFont(new Font("Arial", Font.PLAIN, 15)); 
-        dateCreatedText.setSize(getMaximumSize()); 
-        dateCreatedContainer.add(dateCreatedText);
+        lblDateCreated = new JLabel();
+        lblDateCreated.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        lblDateCreated.setSize(getMaximumSize()); 
+        dateCreatedContainer.add(lblDateCreated);
         
         btnCreate = new JButton("Create");
         btnCreate.setFont(new Font("Arial", Font.PLAIN, 15)); 
@@ -78,17 +78,17 @@ public class TicketRegistrationPanel extends BaseTicketInfoPanel implements Acti
 	}	
 	
 	private void clearUI() {
-		subjectTextField.setText(null);
-		typeComboBox.setSelectedIndex(0);
-		ratingComboBox.setSelectedIndex(0);
+		txtSubject.setText(null);
+		cmbType.setSelectedIndex(0);
+		cmbRating.setSelectedIndex(0);
 	}
 	
 	@Override 
 	public void setVisible(boolean visible) {
 		if(visible) {
 			clearUI();
-			subjectText.setVisible(false);
-			dateCreatedText.setText(new java.sql.Date(System.currentTimeMillis()).toString());
+			txtSubject.setVisible(false);
+			lblDateCreated.setText(new java.sql.Date(System.currentTimeMillis()).toString());
 		}
 		super.setVisible(visible);
 	}
@@ -98,7 +98,7 @@ public class TicketRegistrationPanel extends BaseTicketInfoPanel implements Acti
 		super.actionPerformed(e);
         String action = e.getActionCommand();
         if (action.equals("Save")) {
-        	Ticket t = new Ticket(subjectTextField.getText().toString(), (TicketType)typeComboBox.getSelectedItem(), (TicketRating)ratingComboBox.getSelectedItem(), "fix me bitch");
+        	Ticket t = new Ticket(txtSubject.getText().toString(), (TicketType)cmbType.getSelectedItem(), (TicketRating)cmbRating.getSelectedItem(), "fix me bitch");
         	if(isValid(t)) {
         		ProjectViewUI.getInstance().addTicket(t);
                 System.out.println("saved idiots");

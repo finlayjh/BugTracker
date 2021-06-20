@@ -17,8 +17,8 @@ public class ResourceLoader {
 	private static ResourceLoader singleton = null;
 	
 	private GraphicsEnvironment ge;
-	private BufferedImage yellowAlertImage;
-	private BufferedImage redAlertImage;
+	private BufferedImage imgYellowAlert;
+	private BufferedImage imgRedAlert;
 	
 	private ResourceLoader() {
 		loadFonts();

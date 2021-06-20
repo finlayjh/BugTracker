@@ -49,7 +49,7 @@ public class TicketCard extends JPanel implements Transferable, Serializable{
 	public ProjectViewUI mainUI;
 	private JLabel subjectText;
 	private int radius;
-	private BufferedImage ratingIconImage;
+	private BufferedImage imgRatingIcon;
 	private Component optionalSpacing;
 	transient static DataFlavor dataFlavor = new DataFlavor(Ticket.class, "TicketCard");
 
@@ -101,13 +101,13 @@ public class TicketCard extends JPanel implements Transferable, Serializable{
 		subjectText.setText(ticket.getSubject());
 		switch(ticket.getRating()) {
 		case MINOR:
-			ratingIconImage = null;
+			imgRatingIcon = null;
 			break;
 		case IMPAIRED:
-			ratingIconImage = Stylesheet.getInstance().image("yellow_alert");
+			imgRatingIcon = Stylesheet.getInstance().image("yellow_alert");
 			break;
 		case CATASTROPHIC:
-			ratingIconImage = Stylesheet.getInstance().image("red_alert");
+			imgRatingIcon = Stylesheet.getInstance().image("red_alert");
 			break;
 		}
 	}
@@ -172,8 +172,8 @@ public class TicketCard extends JPanel implements Transferable, Serializable{
         graphics.setColor(Color.BLACK);
         graphics.drawRoundRect(0, 0, width, height, radius, radius);    
         
-        if(ratingIconImage!=null) {
-        	graphics.drawImage(ratingIconImage, width - 30, 20+5, 25, 25, Color.WHITE, this);                                                      // add rating alert icon
+        if(imgRatingIcon!=null) {
+        	graphics.drawImage(imgRatingIcon, width - 30, 20+5, 25, 25, Color.WHITE, this);                                                      // add rating alert icon
         }
 	}
 

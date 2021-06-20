@@ -35,8 +35,8 @@ public class KanbanPanel extends JPanel {
 	
 	private String title;
 	private TicketStatus statusCatagory;
-	private JLabel titleLabel;
-	private JPanel panel;
+	private JLabel lblTitle;
+	private JPanel rootPanel;
 	private BaseInteractablePanel cardPanel;
 	
 	KanbanPanel(String title, TicketStatus statusCatagory){
@@ -45,12 +45,12 @@ public class KanbanPanel extends JPanel {
 		this.statusCatagory = statusCatagory;
 		setSize(getMaximumSize());
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		titleLabel = new JLabel(title);
-		titleLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-		titleLabel.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 50));
-		titleLabel.setForeground(Color.WHITE);
-		titleLabel.setBorder(new EmptyBorder(20,10,40,10));
-		add(titleLabel);
+		lblTitle = new JLabel(title);
+		lblTitle.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		lblTitle.setFont(new Font(Stylesheet.getInstance().font("default"), Font.ITALIC, 50));
+		lblTitle.setForeground(Color.WHITE);
+		lblTitle.setBorder(new EmptyBorder(20,10,40,10));
+		add(lblTitle);
 		setOpaque(false);
 		
 		// card container
@@ -61,11 +61,11 @@ public class KanbanPanel extends JPanel {
 		
 		new DropTargetListImp(cardPanel);
 		
-		panel =  new DisabledPanel(this);
+		rootPanel =  new DisabledPanel(this);
 	}
 	
 	protected void setEnabled(Boolean b) {
-		panel.setEnabled(b);
+		rootPanel.setEnabled(b);
 	}
 	
 	protected int getNumTickets() {

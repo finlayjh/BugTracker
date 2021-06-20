@@ -24,13 +24,13 @@ public class ProjectViewOverlayUI extends JPanel implements MouseListener, Actio
 	private static ProjectViewOverlayUI projectViewOverlayUISingleton = null;
 	
 	private Frame frame;
-	private CircleJButton addTicketButton;
-	private CircleJButton archivedButton;
-	private FadingLabel popAlertLabel;
+	private CircleJButton btnNewTicket;
+	private CircleJButton btnArchived;
+	private FadingLabel lblPopAlert;
 	
 	//center panel counter
 	private RoundedJPanel limitCountPanel;
-	private JLabel limitCountLabel;
+	private JLabel lblLimitCount;
 	private int limitCount = 0;
 	private int limitCountMax = 3;
 	
@@ -66,9 +66,9 @@ public class ProjectViewOverlayUI extends JPanel implements MouseListener, Actio
 		limitCountPanel.setBackground(Color.decode("#d62d20"));
 		limitCountPanel.setBounds(x, y, width, height);	
 		limitCount = mPanel.getComponentCount();
-		limitCountLabel = new JLabel(limitCount + "/" + limitCountMax, SwingConstants.CENTER);
-		limitCountLabel.setFont(new Font(Stylesheet.getInstance().font("default"), Font.PLAIN ,40));
-		limitCountPanel.add(limitCountLabel, BorderLayout.CENTER);
+		lblLimitCount = new JLabel(limitCount + "/" + limitCountMax, SwingConstants.CENTER);
+		lblLimitCount.setFont(new Font(Stylesheet.getInstance().font("default"), Font.PLAIN ,40));
+		limitCountPanel.add(lblLimitCount, BorderLayout.CENTER);
 		add(limitCountPanel);
 	}	
 	
@@ -77,17 +77,17 @@ public class ProjectViewOverlayUI extends JPanel implements MouseListener, Actio
 		int x = lPanel.getLocationOnScreen().x;
 		int y = lPanel.getLocationOnScreen().y + lPanel.getHeight() - 23 - 8;                           //23 is menu bar height fix this later please :)
 			
-		addTicketButton = new CircleJButton("+", false);
-		addTicketButton.setCenterLocation(new Point(x,y));
-		addTicketButton.addActionListener(this);
-		addTicketButton.setFont(new Font("Arial", Font.PLAIN ,100));
-		addTicketButton.setActionCommand("new ticket");
-		addTicketButton.setOpaque(false);
-		addTicketButton.setBackground(Color.decode("#4b8b05"));
-		addTicketButton.setContentAreaFilled(false);
-		addTicketButton.setFocusPainted(false);
-		addTicketButton.setFocusable(false);
-		add(addTicketButton);
+		btnNewTicket = new CircleJButton("+", false);
+		btnNewTicket.setCenterLocation(new Point(x,y));
+		btnNewTicket.addActionListener(this);
+		btnNewTicket.setFont(new Font("Arial", Font.PLAIN ,100));
+		btnNewTicket.setActionCommand("new ticket");
+		btnNewTicket.setOpaque(false);
+		btnNewTicket.setBackground(Color.decode("#4b8b05"));
+		btnNewTicket.setContentAreaFilled(false);
+		btnNewTicket.setFocusPainted(false);
+		btnNewTicket.setFocusable(false);
+		add(btnNewTicket);
 	}
 	
 	protected void initArchivedButton() {
@@ -99,26 +99,26 @@ public class ProjectViewOverlayUI extends JPanel implements MouseListener, Actio
 		ArrayList<Ticket> l = ProjectViewUI.getInstance().getArchivedTickets();
 		System.out.println("init archived button: " + l.size());
 		
-		archivedButton = new CircleJButton(String.valueOf(l.size()), false);
-		archivedButton.setCenterLocation(new Point(x,y));
-		archivedButton.addActionListener(this);
-		archivedButton.setFont(new Font("Arial", Font.PLAIN ,50));
-		archivedButton.setActionCommand("archived");
-		archivedButton.setOpaque(false);
-		archivedButton.setBackground(Color.decode("#4b8b05"));
-		archivedButton.setContentAreaFilled(false);
-		archivedButton.setFocusPainted(false);
-		archivedButton.setFocusable(false);
-		add(archivedButton);
+		btnArchived = new CircleJButton(String.valueOf(l.size()), false);
+		btnArchived.setCenterLocation(new Point(x,y));
+		btnArchived.addActionListener(this);
+		btnArchived.setFont(new Font("Arial", Font.PLAIN ,50));
+		btnArchived.setActionCommand("archived");
+		btnArchived.setOpaque(false);
+		btnArchived.setBackground(Color.decode("#4b8b05"));
+		btnArchived.setContentAreaFilled(false);
+		btnArchived.setFocusPainted(false);
+		btnArchived.setFocusable(false);
+		add(btnArchived);
 	}
 	
 	protected void initPopAlert() {
 		int x = frame.getWidth()/2;
 		int y = frame.getHeight()/4*3;
 		
-		popAlertLabel = new FadingLabel();
-		popAlertLabel.setBounds(x, y, 500, 200);
-		add(popAlertLabel);
+		lblPopAlert = new FadingLabel();
+		lblPopAlert.setBounds(x, y, 500, 200);
+		add(lblPopAlert);
 	}
 	
 	protected static ProjectViewOverlayUI getInstance() {
@@ -132,7 +132,7 @@ public class ProjectViewOverlayUI extends JPanel implements MouseListener, Actio
 	protected boolean updateLimitCounter(int newCount) {
 		if(newCount <= limitCountMax) {
 			limitCount = newCount;
-			limitCountLabel.setText(limitCount + "/" + limitCountMax);
+			lblLimitCount.setText(limitCount + "/" + limitCountMax);
 			return true;
 		}
 		return false;
@@ -144,7 +144,7 @@ public class ProjectViewOverlayUI extends JPanel implements MouseListener, Actio
 		if(size>99) {
 			sizeString = "99+";
 		}
-		archivedButton.setText(sizeString);
+		btnArchived.setText(sizeString);
 	}
 	
 	protected boolean isWIPFull() {
@@ -157,7 +157,7 @@ public class ProjectViewOverlayUI extends JPanel implements MouseListener, Actio
 	}
 	
 	protected void sendPopUpAlert(String text) {
-		popAlertLabel.popAndFade(text);
+		lblPopAlert.popAndFade(text);
 	}
 
 	@Override
